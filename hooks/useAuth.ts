@@ -8,8 +8,6 @@ export const useLogin = () => {
 
   return useMutation({
     mutationFn: async (data: LoginRequest): Promise<LoginResponse> => {
-      console.log("Tentando login com:", data);
-
       const response = await fetch(`${API_CONFIG.BASE_URL}/auth/login`, {
         method: "POST",
         headers: {
@@ -17,8 +15,6 @@ export const useLogin = () => {
         },
         body: JSON.stringify(data),
       });
-
-      console.log("Response status:", response.status);
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
